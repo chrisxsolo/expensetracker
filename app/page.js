@@ -1,7 +1,7 @@
 "use client";
 import Navbar from './components/Navbar';
-import styles from './page.module.css';
 import styled from 'styled-components';
+import "./globals.css"
 
 const MainContent = styled.div`
   margin-top: 100px;
