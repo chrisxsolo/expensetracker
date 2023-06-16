@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -21,4 +21,13 @@ model Post {
   title     String
   content   String?
   published Boolean @default(false)
+}
+
+model Budget {
+  id        Int     @id @default(autoincrement())
+  rent     Int
+  expenses   Int
+  monthlyIncome Int
+  freelanceIncome Int
+  leftoverMoney Int
 }

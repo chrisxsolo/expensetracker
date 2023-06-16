@@ -9,6 +9,7 @@ const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Mulish', sans-serif;
 `;
 
 const Home = () => {

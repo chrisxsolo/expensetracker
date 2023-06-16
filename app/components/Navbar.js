@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from 'styled-components';
 
+
+
 const Navbar = styled.nav`
   position: fixed;
   top: 0;
@@ -21,72 +23,38 @@ const Navbar = styled.nav`
 `;
 
 const Logo = styled.div`
-  color: #000000;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  margin-left: 6%;
+    color: #000000;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 6%;
 `;
-
-const HamburgerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 6%;
-  cursor: pointer;
-`;
-
-const Hamburger = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 20px;
-  height: 16px;
-`;
-
-const HamburgerSpan = styled.span`
-    display:block; 
-    width:100%; 
-    height:2px; 
-    background-color:#000000; 
-    transition: all .3s ease; 
-`;
-
-const NavModal = styled.div`
-    position: fixed; 
-    top:0; 
-    right:0; 
-    width:100vw; 
-    height:100vh; 
-    background-color:#ffffff; 
-    display:flex; 
-    align-items:center; 
-    justify-content:flex-end; 
-    z-index:998; 
-    opacity:${props => props.isOpen ? '1' : '0'}; 
-    visibility:${props => props.isOpen ? 'visible' : 'hidden'}; 
-    transition:${props => props.isOpen ? 'opacity .3s ease' : 'opacity .3s ease, visibility .3s linear .3s'};  
-    text-align: center;
-`;
-
 
 const NavLinks = styled.ul`
     list-style-type:none; 
     padding:0; 
-    margin-right:${props => props.isOpen ? '6%' : '0'};  
+    margin-right:6%;  
     display:flex; 
-    flex-direction:${props => props.isOpen ? 'column' : 'row'};  
+    flex-direction:row;  
     align-items:center;
     justify-content:center;
-    width: 100%;
 `;
-
 
 const NavLink = styled.li`
    margin-bottom:${props => props.isOpen ? '10px' : '0'};  
-   display: flex;
-   justify-content: center;
-`;
+   display:flex;
+   justify-content:center;
+   padding: 10%;
 
+   
+   @media (min-width:769px) {
+       margin-bottom:0;
+       margin-right:10px;
+   }
+   @media (max-width:769px) {
+    padding: 10%;
+   }
+`;
 
 const LinkText = styled.a.attrs(props => ({
     isOpen: props.isOpen
@@ -96,61 +64,52 @@ const LinkText = styled.a.attrs(props => ({
     font-family:"Poppins", sans-serif;  
     font-size:${props => props.isOpen ? '25px' : '16px'};;  
     transition:${props => props.isOpen ? 'color .3s ease' : ''};  
-    text-align: center;
+    text-align:center;
+    
     &:hover {
         color:#888888
     }
+    
+     @media (min-width:769px) {
+         font-size:16px;
+     }
  `;
  
 
 const NavbarComponent = () => {
-    const [isOpen, setIsOpen] = useState(false);
     const [isClient, setIsClient] = useState(false);
-
+  
     useEffect(() => {
         setIsClient(true);
     }, []);
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-
+  
     if (!isClient) {
         return null;
     }
-
+  
     return (
         <Navbar>
-            <Logo>Logo</Logo>
-            <HamburgerContainer onClick={toggleMenu}>
-                <Hamburger>
-                    <HamburgerSpan></HamburgerSpan>
-                    <HamburgerSpan></HamburgerSpan>
-                    <HamburgerSpan></HamburgerSpan>
-                </Hamburger>
-            </HamburgerContainer>
-            <NavModal isOpen={isOpen} onClick={toggleMenu}>
-                <NavLinks isOpen={isOpen}>
-                    <NavLink isOpen={isOpen}>
-                        <Link href="/">
-                            <LinkText isOpen={isOpen}>Home</LinkText>
-                        </Link>
-                    </NavLink>
-                    <NavLink isOpen={isOpen}>
-                        <Link href="/about">
-                            <LinkText isOpen={isOpen}>About</LinkText>
-                        </Link>
-                    </NavLink>
-                    <NavLink isOpen={isOpen}>
-                        <Link href="/contact">
-                            <LinkText isOpen={isOpen}>Contact</LinkText>
-                        </Link>
-                    </NavLink>
-                </NavLinks>
-            </NavModal>
+            <Logo>FinanceTracker</Logo>
+            <NavLinks>
+                <NavLink>
+                    <Link href="/">
+                        <LinkText>Home</LinkText>
+                    </Link>
+                </NavLink>
+                <NavLink>
+                    <Link href="/about">
+                        <LinkText>About</LinkText>
+                    </Link>
+                </NavLink>
+                <NavLink>
+                    <Link href="/contact">
+                        <LinkText>Contact</LinkText>
+                    </Link>
+                </NavLink>
+            </NavLinks>
         </Navbar>
     );
 };
-
+  
 export default NavbarComponent;
 
