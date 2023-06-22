@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 
 const Navbar = styled.nav`
-  position: fixed;
+position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -46,11 +46,6 @@ const NavLink = styled.li`
    justify-content:center;
    padding: 10%;
 
-   
-   @media (min-width:769px) {
-       margin-bottom:0;
-       margin-right:10px;
-   }
    @media (max-width:769px) {
     padding: 10%;
    }
@@ -103,7 +98,7 @@ const NavbarComponent = () => {
                 </NavLink>
                 <NavLink>
                     <Link href="/contact">
-                        <LinkText>Contact</LinkText>
+                        <LinkText>Add Expenses</LinkText>
                     </Link>
                 </NavLink>
             </NavLinks>
