@@ -1,26 +1,43 @@
 "use client";
-import Navbar from './components/Navbar';
+import React from 'react';
 import styled from 'styled-components';
-import "./globals.css"
 
-const MainContent = styled.div`
-  margin-top: 100px;
-  //center the content
+const Grid = styled.div`
+  padding-top: 20%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 15rem;
+  justify-content: center;
   align-items: center;
-  font-family: 'Mulish', sans-serif;
+`;
+
+const GridItem = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+`;
+
+const SpendingLimit = styled(GridItem)`
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
 `;
 
 const Home = () => {
+  const spendingLimit = 1000;
+
   return (
-    <div>
-      <Navbar />
-      <MainContent>
-        <h1>Expense Tracker</h1>
-        {/* Add your other content here */}
-      </MainContent>
-    </div>
+    <Grid>
+      <GridItem>
+        <Image src="./finance.png" alt="Image" />
+      </GridItem>
+      <SpendingLimit>{spendingLimit}</SpendingLimit>
+    </Grid>
   );
 };
 
