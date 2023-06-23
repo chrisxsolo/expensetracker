@@ -18,15 +18,16 @@ const Expenses = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        income: income,
-        rent: rent,
-        freelanceIncome: freelanceIncome,
-        expenses: expenses,
+        income: parseInt(income),
+        rent: parseInt(rent),
+        freelanceIncome: parseInt(freelanceIncome),
+        expenses: parseInt(expenses),
       }),
     })
     const data = await response.json()
     // handle response
   }
+  
   
 
   return (

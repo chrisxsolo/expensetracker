@@ -1,5 +1,5 @@
 // pages/api/submit-expenses.js
-import prisma from '../../../lib/prisma'
+import prisma from '../../lib/prisma'
 
 export default async function handle(req, res) {
   const { monthlyincome, rent, freelanceIncome, expenses } = req.body
