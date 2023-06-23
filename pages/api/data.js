@@ -1,9 +1,12 @@
 // pages/api/data.js
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../lib/prisma'
 
-const prisma = new PrismaClient()
-
-export default async function handler(req, res) {
-  const data = await prisma.budget.findMany()
-  res.status(200).json(data)
+export default async function handle(req, res) {
+  // Find the latest Budget record in the database
+  const latestBudget = await prisma.budget.findFirst({
+    orderBy: {
+      id: 'desc',
+    },
+  })
+  res.json(latestBudget)
 }
