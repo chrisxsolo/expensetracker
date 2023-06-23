@@ -10,10 +10,24 @@ const Expenses = () => {
   const [freelanceIncome, setFreelanceIncome] = useState('')
   const [expenses, setExpenses] = useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    // handle form submission
+    const response = await fetch('/api/submit-expenses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        income: income,
+        rent: rent,
+        freelanceIncome: freelanceIncome,
+        expenses: expenses,
+      }),
+    })
+    const data = await response.json()
+    // handle response
   }
+  
 
   return (
     <div>
