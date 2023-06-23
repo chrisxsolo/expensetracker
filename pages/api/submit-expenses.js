@@ -2,10 +2,10 @@
 import prisma from '../../lib/prisma'
 
 export default async function handle(req, res) {
-  const { monthlyincome, rent, freelanceIncome, expenses } = req.body
+  const { income, rent, freelanceIncome, expenses } = req.body
   const result = await prisma.budget.create({
     data: {
-      income: monthlyincome,
+      monthlyIncome: income,
       rent: rent,
       freelanceIncome: freelanceIncome,
       expenses: expenses,

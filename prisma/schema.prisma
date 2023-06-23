@@ -23,11 +23,12 @@ model Post {
   published Boolean @default(false)
 }
 
+
 model Budget {
-  id        Int     @id @default(autoincrement())
-  rent     Int
-  expenses   Int
-  monthlyIncome Int
+  id             Int     @id @default(autoincrement())
+  monthlyIncome  Int
+  rent           Int
   freelanceIncome Int
-  leftoverMoney Int
+  expenses       Int
+  leftoverMoney  Int?
 }

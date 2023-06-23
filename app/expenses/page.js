@@ -29,45 +29,46 @@ const Expenses = () => {
   }
   
   
+  
 
   return (
     <div>
       <Navbar />
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label>
-          Monthly Income:
-          <input
-            type="number"
-            value={income}
-            onChange={(event) => setIncome(event.target.value)}
-          />
-        </label>
-        <label>
-          Rent:
-          <input
-            type="number"
-            value={rent}
-            onChange={(event) => setRent(event.target.value)}
-          />
-        </label>
-        <label>
-          Freelance Income:
-          <input
-            type="number"
-            value={freelanceIncome}
-            onChange={(event) => setFreelanceIncome(event.target.value)}
-          />
-        </label>
-        <label>
-          Expenses:
-          <input
-            type="number"
-            value={expenses}
-            onChange={(event) => setExpenses(event.target.value)}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+  <label>
+    Monthly Income:
+    <input
+      type="number"
+      value={income}
+      onChange={(event) => setIncome(parseInt(event.target.value))}
+    />
+  </label>
+  <label>
+    Rent:
+    <input
+      type="number"
+      value={rent}
+      onChange={(event) => setRent(parseInt(event.target.value))}
+    />
+  </label>
+  <label>
+    Freelance Income:
+    <input
+      type="number"
+      value={freelanceIncome}
+      onChange={(event) => setFreelanceIncome(parseInt(event.target.value))}
+    />
+  </label>
+  <label>
+    Expenses:
+    <input
+      type="number"
+      value={expenses}
+      onChange={(event) => setExpenses(parseInt(event.target.value))}
+    />
+  </label>
+  <button type="submit">Submit</button>
+</form>
     </div>
   )
 }
