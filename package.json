@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^4.15.0",
+    "@prisma/client": "^4.16.1",
     "auth": "^0.0.9",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
