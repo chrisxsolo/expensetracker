@@ -97,7 +97,7 @@ const NavbarComponent = () => {
                     </Link>
                 </NavLink>
                 <NavLink>
-                    <Link href="/contact">
+                    <Link href="/expenses">
                         <LinkText>Add Expenses</LinkText>
                     </Link>
                 </NavLink>

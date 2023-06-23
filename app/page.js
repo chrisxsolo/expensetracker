@@ -1,46 +1,58 @@
+// pages/page.js
 "use client";
-import React from 'react';
+import Navbar from './Navbar';
 import styled from 'styled-components';
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
-const FlexContainer = styled.div`
+const MainContent = styled.div`
+  margin-top: 100px;
   display: flex;
-  flex-direction: row;
-  gap: 15rem;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
-  height: 100vh;
-  
+  font-family: 'Mulish', sans-serif;
 `;
 
-const FlexItem = styled.div`
-  text-align: center;
-  height: 100%;
+const Flexbox = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Image = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-`;
-
-const SpendingLimit = styled(FlexItem)`
-  font-size: 24px;
-  font-family: "Poppins", sans-serif;
+  margin-top: 10%;
+  justify-content: space-between;
+  gap: 20%;
 `;
 
 const Home = () => {
-  const spendingLimit = 1000;
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('/api/data')
+      const data = await res.json()
+      setData(data)
+    }
+    fetchData()
+  }, [])
 
   return (
-    <FlexContainer>
-      <FlexItem>
-        <Image src="./finance.png" alt="Image" />
-      </FlexItem>
-      <SpendingLimit>{spendingLimit}</SpendingLimit>
-    </FlexContainer>
+    <div>
+      <Navbar />
+      <MainContent>
+        <h1>Expense Tracker</h1>
+        <Flexbox>
+          <div>
+            <Image src="/finance.png" alt="image" width={200} height={200} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <p>Money able to spend: $100</p>
+            {/* Render the data from your PostgreSQL database here */}
+            {data.map((item) => (
+              <div key={item.id}>
+                {item.expenses}
+              </div>
+            ))}
+          </div>
+        </Flexbox>
+      </MainContent>
+    </div>
   );
 };
 
