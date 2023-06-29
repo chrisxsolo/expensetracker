@@ -22,8 +22,23 @@ const FlexContainer = styled.div`
 `;
 
 const FlexItem = styled.div`
-  flex-basis: calc(100% / 3);
+  flex-basis: 100%;
   padding: 20px;
+  text-align: center;
+`;
+
+const MoneyContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+`;
+
+const MoneyLabel = styled.div`
+  font-weight: bold;
+`;
+
+const MoneyAmount = styled.div`
+  margin-left: 10px;
 `;
 
 const Home = () => {
@@ -56,18 +71,26 @@ const Home = () => {
     <PageContainer>
       <Navbar />
       <FlexContainer>
-        <FlexItem>{new Date().toLocaleDateString()}</FlexItem>
         <FlexItem>
-          <div>Inflow</div>
-          <div>{data?.monthlyIncome}</div>
+          <div>{new Date().toLocaleDateString()}</div>
         </FlexItem>
         <FlexItem>
-          <div>Outflow</div>
-          <div>{totalExpenses}</div>
+          <MoneyContainer>
+            <MoneyLabel>inflow:</MoneyLabel>
+            <MoneyAmount>{data?.monthlyIncome}</MoneyAmount>
+          </MoneyContainer>
         </FlexItem>
         <FlexItem>
-          <div>Money Able to Spend</div>
-          <div>{moneyAbleToSpend}</div>
+          <MoneyContainer>
+            <MoneyLabel>Outflow:</MoneyLabel>
+            <MoneyAmount>{totalExpenses}</MoneyAmount>
+          </MoneyContainer>
+        </FlexItem>
+        <FlexItem>
+          <MoneyContainer>
+            <MoneyLabel>Money to Spend:</MoneyLabel>
+            <MoneyAmount>{moneyAbleToSpend}</MoneyAmount>
+          </MoneyContainer>
         </FlexItem>
       </FlexContainer>
 
