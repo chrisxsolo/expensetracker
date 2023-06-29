@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import Navbar from '../Navbar'
 import styles from './expenses.module.css'
+import 'bootstrap/dist/css/bootstrap.css'
+
 
 const Expenses = () => {
   // State variables to store the form data
@@ -91,66 +93,90 @@ const Expenses = () => {
   return (
     <div>
       <Navbar />
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit} className="container mt-4">
         {/* Input field for monthly income */}
-        <label>
-          Monthly Income:
+        <div className="form-group">
+          <label htmlFor="income">Monthly Income:</label>
           <input
             type="number"
+            id="income"
+            className="form-control"
             value={income}
             onChange={(event) => setIncome(event.target.value)}
           />
-        </label>
+        </div>
         {/* Input field for rent */}
-        <label>
-          Rent:
+        <div className="form-group">
+          <label htmlFor="rent">Rent:</label>
           <input
             type="number"
+            id="rent"
+            className="form-control"
             value={rent}
             onChange={(event) => setRent(event.target.value)}
           />
-        </label>
+        </div>
         {/* Render multiple input fields for freelance income */}
         {/* The map() function is used to iterate over the freelanceIncomes array and render an input field for each value */}
         {freelanceIncomes.map((freelanceIncome, index) => (
-          <label key={index}>
-            Freelance Income:
+          <div className="form-group" key={index}>
+            <label htmlFor={`freelanceIncome${index}`}>Freelance Income:</label>
             <input
               type="number"
+              id={`freelanceIncome${index}`}
+              className="form-control"
               value={freelanceIncome}
               onChange={(event) =>
                 handleFreelanceIncomeChange(index, event.target.value)
               }
             />
-          </label>
+          </div>
         ))}
         {/* Button to add a new input field for freelance income */}
         {/* When clicked, this button calls the handleAddFreelanceIncome function */}
-        <button type="button" onClick={handleAddFreelanceIncome}>
-          Add Freelance Income
-        </button>
+        <div className="mb-3">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleAddFreelanceIncome}
+          >
+            Add Freelance Income
+          </button>
+        </div>
         {/* Render multiple input fields for expenses */}
         {/* The map() function is used to iterate over the expenses array and render an input field for each value */}
         {expenses.map((expense, index) => (
-          <label key={index}>
-            Expense:
+          <div className="form-group" key={index}>
+            <label htmlFor={`expense${index}`}>Expense:</label>
             <input
               type="number"
+              id={`expense${index}`}
+              className="form-control"
               value={expense}
               onChange={(event) =>
                 handleExpenseChange(index, event.target.value)
               }
             />
-          </label>
+          </div>
         ))}
         {/* Button to add a new input field for expenses */}
         {/* When clicked, this button calls the handleAddExpense function */}
-        <button type="button" onClick={handleAddExpense}>
-          Add Expense
-        </button>
+        <div className="mb-3">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleAddExpense}
+          >
+            Add Expense
+          </button>
+        </div>
         {/* Submit button to submit the form */}
         {/* When clicked, this button submits the form and calls the handleSubmit function */}
-        <button type="submit">Submit</button>
+        <div className="text-center">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   )

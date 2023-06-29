@@ -3,10 +3,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styled from 'styled-components';
 
-
-
 const Navbar = styled.nav`
-position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -23,88 +21,93 @@ position: fixed;
 `;
 
 const Logo = styled.div`
-    color: #000000;
-    font-family: "Poppins", sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    margin-left: 6%;
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 6%;
 `;
 
 const NavLinks = styled.ul`
-    list-style-type:none; 
-    padding:0; 
-    margin-right:6%;  
-    display:flex; 
-    flex-direction:row;  
-    align-items:center;
-    justify-content:center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 const NavLink = styled.li`
-   margin-bottom:${props => props.isOpen ? '10px' : '0'};  
-   display:flex;
-   justify-content:center;
-   padding: 10%;
-
-   @media (max-width:769px) {
-    padding: 10%;
-   }
+  margin-bottom: ${props => (props.isOpen ? "10px" : "0")};
+  display: flex;
+  justify-content: center;
+  padding: 10px 15px;
+  text-decoration: none;
 `;
 
 const LinkText = styled.a.attrs(props => ({
-    isOpen: props.isOpen
- }))`
-    color:#000000;  
-    text-decoration:none;  
-    font-family:"Poppins", sans-serif;  
-    font-size:${props => props.isOpen ? '25px' : '16px'};;  
-    transition:${props => props.isOpen ? 'color .3s ease' : ''};  
-    text-align:center;
-    
-    &:hover {
-        color:#888888
-    }
-    
-     @media (min-width:769px) {
-         font-size:16px;
-     }
- `;
- 
+  isOpen: props.isOpen
+}))`
+  color: #000000;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: ${props => (props.isOpen ? "25px" : "16px")};
+  transition: ${props => (props.isOpen ? "color .3s ease" : "")};
+  text-align: center;
+  white-space: nowrap;
 
-const NavbarComponent = () => {
-    const [isClient, setIsClient] = useState(false);
-  
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
-  
-    if (!isClient) {
-        return null;
-    }
-  
-    return (
-        <Navbar>
-            <Logo>FinanceTracker</Logo>
-            <NavLinks>
-                <NavLink>
-                    <Link href="/">
-                        <LinkText>Home</LinkText>
-                    </Link>
-                </NavLink>
-                <NavLink>
-                    <Link href="/about">
-                        <LinkText>About</LinkText>
-                    </Link>
-                </NavLink>
-                <NavLink>
-                    <Link href="/expenses">
-                        <LinkText>Add Expenses</LinkText>
-                    </Link>
-                </NavLink>
-            </NavLinks>
-        </Navbar>
-    );
+  &:hover {
+    color: #888888;
+  }
+
+  @media (min-width: 769px) {
+    font-size: 16px;
+  }
+`;
+
+const ContentContainer = styled.div`
+  margin-top: 80px;
+`;
+
+const NavbarComponent = ({ content }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
+  return (
+    <>
+      <Navbar>
+        <Logo>FinanceTracker</Logo>
+        <NavLinks>
+          <NavLink>
+            <Link href="/">
+              <LinkText>Home</LinkText>
+            </Link>
+          </NavLink>
+          <NavLink>
+            <Link href="/about">
+              <LinkText>About</LinkText>
+            </Link>
+          </NavLink>
+          <NavLink>
+            <Link href="/expenses">
+              <LinkText>add expenses</LinkText>
+            </Link>
+          </NavLink>
+        </NavLinks>
+      </Navbar>
+      <ContentContainer>
+        {content}
+      </ContentContainer>
+    </>
+  );
 };
-  
-export default NavbarComponent;
 
+export default NavbarComponent;

@@ -1,69 +1,79 @@
 // pages/page.js
 "use client";
+// pages/page.js
 import Navbar from './Navbar'
 import styled from 'styled-components'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import styles from './page.module.css'
 
-const MainContent = styled.div`
-  margin-top: 100px;
+const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Mulish', sans-serif;
-`
+`;
 
-const Flexbox = styled.div`
+const FlexContainer = styled.div`
   display: flex;
-  margin-top: 10%;
-  justify-content: space-between;
-  gap: 20%;
-`
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+`;
+
+const FlexItem = styled.div`
+  flex-basis: calc(100% / 3);
+  padding: 20px;
+`;
 
 const Home = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch('/api/data')
-      const data = await res.json()
-      setData(data)
+      const res = await fetch('/api/data');
+      const data = await res.json();
+      setData(data);
     }
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
+
+  const availableMoney = data?.monthlyIncome - data?.rent;
+  console.log(availableMoney);
 
   // Calculate the total income by summing up the monthlyIncome and freelanceIncome values
-  const totalIncome = data?.monthlyIncome + data?.freelanceIncome || 0
+  const totalIncome = availableMoney + data?.freelanceIncome || 0;
+
+  console.log(totalIncome);
 
   // Calculate the total expenses by summing up the rent and expenses values
-  const totalExpenses = data?.rent + data?.expenses || 0
+  const totalExpenses = data?.expenses || 0;
 
   // Calculate the money able to spend by subtracting the total expenses from the total income
-  const moneyAbleToSpend = totalIncome - totalExpenses
+  const moneyAbleToSpend = totalIncome - totalExpenses;
 
   return (
-    <div>
+    <PageContainer>
       <Navbar />
-      <MainContent>
-        <h1>Expense Tracker</h1>
-        <Flexbox>
-          <div>
-            <Image src="/finance.png" alt="image" width={200} height={200} />
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            {/* Render the calculated money able to spend value here */}
-            <p>Money able to spend: ${moneyAbleToSpend}</p>
-          </div>
-        </Flexbox>
-      </MainContent>
-    </div>
-  )
+      <FlexContainer>
+        <FlexItem>{new Date().toLocaleDateString()}</FlexItem>
+        <FlexItem>
+          <div>Inflow</div>
+          <div>{data?.monthlyIncome}</div>
+        </FlexItem>
+        <FlexItem>
+          <div>Outflow</div>
+          <div>{totalExpenses}</div>
+        </FlexItem>
+        <FlexItem>
+          <div>Money Able to Spend</div>
+          <div>{moneyAbleToSpend}</div>
+        </FlexItem>
+      </FlexContainer>
+
+      {/* Rest of the code */}
+    </PageContainer>
+  );
 }
 
-export default Home
+export default Home;

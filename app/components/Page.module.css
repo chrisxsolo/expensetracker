@@ -19,3 +19,8 @@
   font-family: "Poppins", sans-serif;
   color: red;
 }
+
+/* In your CSS file */
+.no-underline {
+  text-decoration: none;
+}
