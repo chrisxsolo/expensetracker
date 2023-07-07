@@ -31,4 +31,15 @@ model Budget {
   freelanceIncome Int
   expenses       Int
   leftoverMoney  Int?
+  monthlyExpenses MonthlyExpense?
+
 }
+
+model MonthlyExpense {
+  id       Int    @id @default(autoincrement())
+  category String
+  amount   Int
+  budgetId Int    @unique
+  budget   Budget @relation(fields: [budgetId], references: [id])
+}
+

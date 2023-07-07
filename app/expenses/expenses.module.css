@@ -1,17 +1,21 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .form label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
-  
-  .form input {
-    margin-left: 1rem;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.form input {
+  margin-left: 1rem;
+}
+
+.container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

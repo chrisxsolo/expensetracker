@@ -18,6 +18,7 @@ const Navbar = styled.nav`
   height: 60px;
   transition: height 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
 `;
 
 const Logo = styled.div`
@@ -36,6 +37,7 @@ const NavLinks = styled.ul`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
 `;
 
 const NavLink = styled.li`
@@ -56,6 +58,8 @@ const LinkText = styled.a.attrs(props => ({
   transition: ${props => (props.isOpen ? "color .3s ease" : "")};
   text-align: center;
   white-space: nowrap;
+  text-decoration: none;
+
 
   &:hover {
     color: #888888;
@@ -93,7 +97,7 @@ const NavbarComponent = ({ content }) => {
           </NavLink>
           <NavLink>
             <Link href="/about">
-              <LinkText>About</LinkText>
+              <LinkText >About</LinkText>
             </Link>
           </NavLink>
           <NavLink>
