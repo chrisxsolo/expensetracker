@@ -22,24 +22,12 @@ model Post {
   content   String?
   published Boolean @default(false)
 }
-
-
 model Budget {
   id             Int     @id @default(autoincrement())
-  monthlyIncome  Int
-  rent           Int
-  freelanceIncome Int
-  expenses       Int
-  leftoverMoney  Int?
-  monthlyExpenses MonthlyExpense?
-
-}
-
-model MonthlyExpense {
-  id       Int    @id @default(autoincrement())
-  category String
-  amount   Int
-  budgetId Int    @unique
-  budget   Budget @relation(fields: [budgetId], references: [id])
+  monthlyIncome  Float?
+  rent           Float?    @default(0)
+  freelanceIncome Float?
+  expenses       Float?
+  leftoverMoney  Float?
 }
 

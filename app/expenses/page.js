@@ -1,3 +1,4 @@
+// page.js
 "use client";
 import { useState } from 'react';
 import Navbar from '../Navbar';
@@ -13,12 +14,12 @@ const Expenses = () => {
     event.preventDefault();
 
     const totalFreelanceIncome = freelanceIncomes.reduce(
-      (total, value) => total + parseInt(value),
+      (total, value) => total + parseFloat(value || 0),
       0
     );
 
     const totalExpenses = expenses.reduce(
-      (total, value) => total + parseInt(value),
+      (total, value) => total + parseFloat(value || 0),
       0
     );
 
@@ -28,8 +29,8 @@ const Expenses = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        income: parseInt(income),
-        rent: parseInt(rent),
+        income: parseFloat(income),
+        rent: parseFloat(rent),
         freelanceIncome: totalFreelanceIncome,
         expenses: totalExpenses,
       }),
@@ -87,7 +88,7 @@ const Expenses = () => {
         <div className="form-group">
           <label htmlFor="income">Monthly Income:</label>
           <input
-            type="number"
+            type="text"
             id="income"
             className="form-control"
             value={income}
@@ -97,7 +98,7 @@ const Expenses = () => {
         <div className="form-group">
           <label htmlFor="rent">Rent:</label>
           <input
-            type="number"
+            type="text"
             id="rent"
             className="form-control"
             value={rent}
@@ -108,7 +109,7 @@ const Expenses = () => {
           <div className="form-group" key={index}>
             <label htmlFor={`freelanceIncome${index}`}>Freelance Income:</label>
             <input
-              type="number"
+              type="text"
               id={`freelanceIncome${index}`}
               className="form-control"
               value={freelanceIncome}
@@ -131,7 +132,7 @@ const Expenses = () => {
           <div className="form-group" key={index}>
             <label htmlFor={`expense${index}`}>Expense:</label>
             <input
-              type="number"
+              type="text"
               id={`expense${index}`}
               className="form-control"
               value={expense}
