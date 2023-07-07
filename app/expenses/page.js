@@ -1,9 +1,7 @@
-// pages/expenses.js
 "use client";
 import { useState } from 'react';
 import Navbar from '../Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
-import fetch from 'node-fetch';
 
 const Expenses = () => {
   const [income, setIncome] = useState('');
@@ -84,88 +82,88 @@ const Expenses = () => {
 
   return (
     <div>
-    <Navbar />
-    <form onSubmit={handleSubmit} className="container mt-4">
-      <div className="form-group">
-        <label htmlFor="income">Monthly Income:</label>
-        <input
-          type="number"
-          id="income"
-          className="form-control"
-          value={income}
-          onChange={(event) => setIncome(event.target.value)}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="rent">Rent:</label>
-        <input
-          type="number"
-          id="rent"
-          className="form-control"
-          value={rent}
-          onChange={(event) => setRent(event.target.value)}
-        />
-      </div>
-      {freelanceIncomes.map((freelanceIncome, index) => (
-        <div className="form-group" key={index}>
-          <label htmlFor={`freelanceIncome${index}`}>Freelance Income:</label>
+      <Navbar />
+      <form onSubmit={handleSubmit} className="container mt-4">
+        <div className="form-group">
+          <label htmlFor="income">Monthly Income:</label>
           <input
             type="number"
-            id={`freelanceIncome${index}`}
+            id="income"
             className="form-control"
-            value={freelanceIncome}
-            onChange={(event) =>
-              handleFreelanceIncomeChange(index, event.target.value)
-            }
+            value={income}
+            onChange={(event) => setIncome(event.target.value)}
           />
         </div>
-      ))}
-      <div className="mb-3" style={{ marginTop: '1rem' }}>
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={handleAddFreelanceIncome}
-        >
-          Add Freelance Income
-        </button>
-      </div>
-      {expenses.map((expense, index) => (
-        <div className="form-group" key={index}>
-          <label htmlFor={`expense${index}`}>Expense:</label>
+        <div className="form-group">
+          <label htmlFor="rent">Rent:</label>
           <input
             type="number"
-            id={`expense${index}`}
+            id="rent"
             className="form-control"
-            value={expense}
-            onChange={(event) =>
-              handleExpenseChange(index, event.target.value)
-            }
+            value={rent}
+            onChange={(event) => setRent(event.target.value)}
           />
         </div>
-      ))}
-      <div className="mb-3" style={{ marginTop: '1rem' }}>
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={handleAddExpense}
-        >
-          Add Expense
-        </button>
-      </div>
-      <div className="d-flex justify-content-between">
-        <div>
-          <button type="submit" className="btn btn-primary" onClick={handleResetDatabase}>
-            Reset Database
+        {freelanceIncomes.map((freelanceIncome, index) => (
+          <div className="form-group" key={index}>
+            <label htmlFor={`freelanceIncome${index}`}>Freelance Income:</label>
+            <input
+              type="number"
+              id={`freelanceIncome${index}`}
+              className="form-control"
+              value={freelanceIncome}
+              onChange={(event) =>
+                handleFreelanceIncomeChange(index, event.target.value)
+              }
+            />
+          </div>
+        ))}
+        <div className="mb-3" style={{ marginTop: '1rem' }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleAddFreelanceIncome}
+          >
+            Add Freelance Income
           </button>
         </div>
-        <div>
-          <button type="submit" className="btn btn-primary">
-            Submit
+        {expenses.map((expense, index) => (
+          <div className="form-group" key={index}>
+            <label htmlFor={`expense${index}`}>Expense:</label>
+            <input
+              type="number"
+              id={`expense${index}`}
+              className="form-control"
+              value={expense}
+              onChange={(event) =>
+                handleExpenseChange(index, event.target.value)
+              }
+            />
+          </div>
+        ))}
+        <div className="mb-3" style={{ marginTop: '1rem' }}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleAddExpense}
+          >
+            Add Expense
           </button>
         </div>
-      </div>
-    </form>
-  </div>
+        <div className="d-flex justify-content-between">
+          <div>
+            <button type="submit" className="btn btn-primary" onClick={handleResetDatabase}>
+              Reset Database
+            </button>
+          </div>
+          <div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 
