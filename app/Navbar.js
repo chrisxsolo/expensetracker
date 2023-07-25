@@ -102,7 +102,12 @@ const NavbarComponent = ({ content }) => {
           </NavLink>
           <NavLink>
             <Link href="/expenses">
-              <LinkText>add expenses</LinkText>
+              <LinkText>Add Expenses</LinkText>
+            </Link>
+          </NavLink>
+          <NavLink>
+            <Link href="/login">
+              <LinkText>Login</LinkText>
             </Link>
           </NavLink>
         </NavLinks>
